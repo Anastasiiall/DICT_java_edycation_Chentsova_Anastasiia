@@ -41,6 +41,27 @@ public class ChatBot {
             i++;
         }
 
+        System.out.println("Let's test your programming knowledge.");
+
+        System.out.println("What programming language was used now?");
+        System.out.println("1.Python");
+        System.out.println("2.C++");
+        System.out.println("3.Java");
+        System.out.println("4.PHP");
+
+        Scanner ans = new Scanner(System.in);
+        int Answer;
+        while (true){
+            Answer = ans.nextInt();
+            if (Answer == 3){
+                System.out.println("Great, you right!");
+                break;
+            }else{
+                System.out.println("Please, try again.");
+            }
+        }
+        System.out.println("Goodbye, have a nice day!");
+
 
     }
 }
