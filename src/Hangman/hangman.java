@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Random;
 
-
 public class hangman {
     public static void main(String[] args) throws IOException {
         System.out.println("HANGMAN");
@@ -47,33 +46,38 @@ public class hangman {
             currWord = randomListElement;
 
             for (char ch : alphabet.toCharArray()) {
-
                 currWord = currWord.replace(ch, '-');
-
                 currWord = currWord.replace(Character.toUpperCase(ch), '-');
-
             }
 
             System.out.println(currWord);
 
+        if (attempts > 0){
             if (randomListElement.contains(String.valueOf(letters))) {
+            } else if (currWord.contains(alphabet)) {
                 attempts--;
-            } else {
-                System.out.println("That letter doesn't appear in the world");
+                System.out.println("No improvements");
+                System.out.println(attempts);
+            }else {
                 attempts--;
+                System.out.println("That letter doesn't appear in the word");
+                System.out.println(attempts);
             }
-
-//            if (attempts == 0) {
-//                System.out.println("Thanks for playing!");
-//                System.out.println("We'll see how well you did in the next stage");
-//                break;
-//            }
-
+        }else {
+                break;
+            }
 
         } while (currWord.contains("-"));
         reader.close();
-        System.out.println("Thanks for playing!");
-        System.out.println("We'll see how well you did in the next stage");
+        if (attempts >= 1){
+            System.out.println("You guessed the word!");
+            System.out.println("You survived!");
+        } else if (attempts == 0 && currWord.length()== randomWordLength) {
+            System.out.println("You guessed the word!");
+            System.out.println("You survived!");
+        } else {
+            System.out.println("You lost!");
+        }
     }
 }
 
