@@ -30,68 +30,74 @@ public class hangman {
         String currWord;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
-//        String letter = scanner.next();
+        System.out.println("Type 'play' to play the game, 'exit' to quit: ");
 
-        System.out.print("Input a letter  ");
+        String word = scanner.next();
+        System.out.println(word);
 
-        while (a != randomWordLength) {
-            a++;
-            System.out.print(c);
-        }
-        System.out.print(": ");
+        if (Objects.equals(word, "play")) {
 
+            System.out.print("Input a letter  ");
 
-        Character letters;
-        do {
-            letters = (reader.readLine().toLowerCase().charAt(0));
-            alphabet = alphabet.replace(letters, '*');
-            currWord = randomListElement;
-
-            for (char ch : alphabet.toCharArray()) {
-                currWord = currWord.replace(ch, '-');
-                currWord = currWord.replace(Character.toUpperCase(ch), '-');
+            while (a != randomWordLength) {
+                a++;
+                System.out.print(c);
             }
-
-            System.out.println(currWord);
-            System.out.println(letters);
+            System.out.print(": ");
 
 
-        if (attempts > 0) {
+            Character letters;
+            do {
+                letters = (reader.readLine().toLowerCase().charAt(0));
+                alphabet = alphabet.replace(letters, '*');
+                currWord = randomListElement;
 
-            if (String.valueOf(letters).length() != 1) {
-                System.out.println("You should input a single letter");
-
-                if (randomListElement.contains(String.valueOf(letters))) {
-                } else {
-                    attempts--;
-                    System.out.println("That letter doesn't appear in the word");
-                    System.out.println(attempts);
+                for (char ch : alphabet.toCharArray()) {
+                    currWord = currWord.replace(ch, '-');
+                    currWord = currWord.replace(Character.toUpperCase(ch), '-');
                 }
+
+                System.out.println(currWord);
+
+
+                if (attempts > 0) {
+
+                    if (String.valueOf(letters).length() != 1) {
+                        System.out.println("You should input a single letter");}
+
+                    if (randomListElement.contains(String.valueOf(letters))) {
+                    } else {
+                        attempts--;
+                        System.out.println("That letter doesn't appear in the word");
+                        System.out.println(attempts);
+                    }
+
+                } else {
+                    break;
+                }
+
+                if (String.valueOf(letters).equals(alphabet)) {
+                    System.out.println("Please enter a lowercase English letter");
+                }
+
+
+            } while (currWord.contains("-"));
+            reader.close();
+            if (attempts >= 1) {
+                System.out.println("You guessed the word!");
+                System.out.println("You survived!");
+            } else if (attempts == 0 && currWord.length() == randomWordLength) {
+                System.out.println("You guessed the word!");
+                System.out.println("You survived!");
+            } else {
+                System.out.println("You lost!");
             }
-        }else{
-            break;
-        }
-
-        if (!Objects.equals(String.valueOf(letters), "abcdefghijklmnopqrstuvwxyz")){
-            System.out.println("Please enter a lowercase English letter");
-        }
 
 
-
-
-        } while (currWord.contains("-"));
-        reader.close();
-        if (attempts >= 1){
-            System.out.println("You guessed the word!");
-            System.out.println("You survived!");
-        } else if (attempts == 0 && currWord.length()== randomWordLength) {
-            System.out.println("You guessed the word!");
-            System.out.println("You survived!");
         } else {
-            System.out.println("You lost!");
+            System.exit(Integer.parseInt("exit"));
         }
+
+
     }
 }
-
-
-
