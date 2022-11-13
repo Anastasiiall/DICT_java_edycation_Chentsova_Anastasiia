@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class hangman {
     public static void main(String[] args) throws IOException {
@@ -27,8 +29,8 @@ public class hangman {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         String currWord;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        Scanner letter = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+//        String letter = scanner.next();
 
         System.out.print("Input a letter  ");
 
@@ -39,7 +41,7 @@ public class hangman {
         System.out.print(": ");
 
 
-        char letters;
+        Character letters;
         do {
             letters = (reader.readLine().toLowerCase().charAt(0));
             alphabet = alphabet.replace(letters, '*');
@@ -51,21 +53,31 @@ public class hangman {
             }
 
             System.out.println(currWord);
+            System.out.println(letters);
 
-        if (attempts > 0){
-            if (randomListElement.contains(String.valueOf(letters))) {
-            } else if (currWord.contains(alphabet)) {
-                attempts--;
-                System.out.println("No improvements");
-                System.out.println(attempts);
-            }else {
-                attempts--;
-                System.out.println("That letter doesn't appear in the word");
-                System.out.println(attempts);
+
+        if (attempts > 0) {
+
+            if (String.valueOf(letters).length() != 1) {
+                System.out.println("You should input a single letter");
+
+                if (randomListElement.contains(String.valueOf(letters))) {
+                } else {
+                    attempts--;
+                    System.out.println("That letter doesn't appear in the word");
+                    System.out.println(attempts);
+                }
             }
-        }else {
-                break;
-            }
+        }else{
+            break;
+        }
+
+        if (!Objects.equals(String.valueOf(letters), "abcdefghijklmnopqrstuvwxyz")){
+            System.out.println("Please enter a lowercase English letter");
+        }
+
+
+
 
         } while (currWord.contains("-"));
         reader.close();
