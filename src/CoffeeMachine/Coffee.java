@@ -1,5 +1,7 @@
 package CoffeeMachine;
 
+import java.util.Scanner;
+
 public class Coffee {
     public int waters = 400;
     public int milks = 540;
@@ -9,11 +11,10 @@ public class Coffee {
     public int waterEspresso = 250;
     public int waterLatte = 350;
     public int waterCappuccino = 200;
-    public int milkEspresso = 0;
     public int milkLatte = 75;
     public int milkCappuccino = 100;
     public int beanEspresso = 16;
-    public int beanLatte = 120;
+    public int beanLatte = 20;
     public int beanCappuccino = 12;
     public int cupEspresso = 1;
     public int cupLatte = 1;
@@ -22,10 +23,7 @@ public class Coffee {
     public int moneyLatte = 7;
     public int moneyCappuccino = 6;
 
-//    public Coffee (){}
-//    public Coffee (int water, int milk, int bean, int cup, int money){
-//
-//    }
+
 }
 
 
